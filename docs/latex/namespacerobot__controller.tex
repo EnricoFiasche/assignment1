@@ -1,0 +1,118 @@
+\hypertarget{namespacerobot__controller}{}\section{robot\+\_\+controller Namespace Reference}
+\label{namespacerobot__controller}\index{robot\+\_\+controller@{robot\+\_\+controller}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacerobot__controller_a869c3c711979050c7e3fe9b61908ae4d}{position\+Call\+Back} (robot\+\_\+position)
+\item 
+def \hyperlink{namespacerobot__controller_ab3492a28557eb54f5f454111ff7d0495}{is\+Reached} (x, y)
+\item 
+def \hyperlink{namespacerobot__controller_a511c31df6f9bf112ed99fb8e649db6ae}{control} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacerobot__controller_a122e6e82d013c9e474d7b5c987efde3d}{pub} = rospy.\+Publisher(\textquotesingle{}/cmd\+\_\+vel\textquotesingle{}, Twist, queue\+\_\+size=1000)
+\begin{DoxyCompactList}\small\item\em Global publisher to modify the velocity inside the call\+Back function. \end{DoxyCompactList}\item 
+\hyperlink{namespacerobot__controller_a7d2c9b24ddf4d6fc069f7bae05ba8935}{random\+\_\+target\+\_\+client} = rospy.\+Service\+Proxy(\textquotesingle{}\hyperlink{namespacerobot__controller_af6e678d9713033f52d7fb793cc429b98}{target}\textquotesingle{},Target)
+\begin{DoxyCompactList}\small\item\em Client service that generate a random target (x,y) \end{DoxyCompactList}\item 
+\hyperlink{namespacerobot__controller_af6e678d9713033f52d7fb793cc429b98}{target} = Odometry()
+\begin{DoxyCompactList}\small\item\em Target position coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{robot\+\_\+controller@{robot\+\_\+controller}!control@{control}}
+\index{control@{control}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{control()}{control()}}]{\setlength{\rightskip}{0pt plus 5cm}def robot\+\_\+controller.\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacerobot__controller_a511c31df6f9bf112ed99fb8e649db6ae}{}\label{namespacerobot__controller_a511c31df6f9bf112ed99fb8e649db6ae}
+\begin{DoxyVerb}Main function that generates a node called robot_controller.
+It generates a random target coordinates and create a subscriber
+to know the robot position
+\end{DoxyVerb}
+ 
+
+Definition at line 70 of file robot\+\_\+controller.\+py.
+
+\index{robot\+\_\+controller@{robot\+\_\+controller}!is\+Reached@{is\+Reached}}
+\index{is\+Reached@{is\+Reached}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{is\+Reached(x, y)}{isReached(x, y)}}]{\setlength{\rightskip}{0pt plus 5cm}def robot\+\_\+controller.\+is\+Reached (
+\begin{DoxyParamCaption}
+\item[{}]{x, }
+\item[{}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacerobot__controller_ab3492a28557eb54f5f454111ff7d0495}{}\label{namespacerobot__controller_ab3492a28557eb54f5f454111ff7d0495}
+\begin{DoxyVerb}Function that checks if the robot has reached the taget position,
+comparing its position with the target, with an error of 0.1
+
+Args:
+    x: The robot position along x-axis
+    y: The robot position along y-axis
+    
+Returns:
+    Boolean value that indicates if the target is reached by the
+    robot.
+\end{DoxyVerb}
+ 
+
+Definition at line 48 of file robot\+\_\+controller.\+py.
+
+\index{robot\+\_\+controller@{robot\+\_\+controller}!position\+Call\+Back@{position\+Call\+Back}}
+\index{position\+Call\+Back@{position\+Call\+Back}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{position\+Call\+Back(robot\+\_\+position)}{positionCallBack(robot_position)}}]{\setlength{\rightskip}{0pt plus 5cm}def robot\+\_\+controller.\+position\+Call\+Back (
+\begin{DoxyParamCaption}
+\item[{}]{robot\+\_\+position}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacerobot__controller_a869c3c711979050c7e3fe9b61908ae4d}{}\label{namespacerobot__controller_a869c3c711979050c7e3fe9b61908ae4d}
+\begin{DoxyVerb}CallBack function that reads the actual position of the robot and
+checks if it reached the target.
+If it is done, generates another target point and modify its
+velocity.
+If the target isn't reached modify its velocity based by the
+distance between the robot and target
+
+Args:
+    robot position: The robot position given by the topic odom
+\end{DoxyVerb}
+ 
+
+Definition at line 17 of file robot\+\_\+controller.\+py.
+
+
+
+\subsection{Variable Documentation}
+\index{robot\+\_\+controller@{robot\+\_\+controller}!pub@{pub}}
+\index{pub@{pub}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{pub}{pub}}]{\setlength{\rightskip}{0pt plus 5cm}robot\+\_\+controller.\+pub = rospy.\+Publisher(\textquotesingle{}/cmd\+\_\+vel\textquotesingle{}, Twist, queue\+\_\+size=1000)}\hypertarget{namespacerobot__controller_a122e6e82d013c9e474d7b5c987efde3d}{}\label{namespacerobot__controller_a122e6e82d013c9e474d7b5c987efde3d}
+
+
+Global publisher to modify the velocity inside the call\+Back function. 
+
+
+
+Definition at line 9 of file robot\+\_\+controller.\+py.
+
+\index{robot\+\_\+controller@{robot\+\_\+controller}!random\+\_\+target\+\_\+client@{random\+\_\+target\+\_\+client}}
+\index{random\+\_\+target\+\_\+client@{random\+\_\+target\+\_\+client}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{random\+\_\+target\+\_\+client}{random_target_client}}]{\setlength{\rightskip}{0pt plus 5cm}robot\+\_\+controller.\+random\+\_\+target\+\_\+client = rospy.\+Service\+Proxy(\textquotesingle{}{\bf target}\textquotesingle{},Target)}\hypertarget{namespacerobot__controller_a7d2c9b24ddf4d6fc069f7bae05ba8935}{}\label{namespacerobot__controller_a7d2c9b24ddf4d6fc069f7bae05ba8935}
+
+
+Client service that generate a random target (x,y) 
+
+
+
+Definition at line 12 of file robot\+\_\+controller.\+py.
+
+\index{robot\+\_\+controller@{robot\+\_\+controller}!target@{target}}
+\index{target@{target}!robot\+\_\+controller@{robot\+\_\+controller}}
+\subsubsection[{\texorpdfstring{target}{target}}]{\setlength{\rightskip}{0pt plus 5cm}robot\+\_\+controller.\+target = Odometry()}\hypertarget{namespacerobot__controller_af6e678d9713033f52d7fb793cc429b98}{}\label{namespacerobot__controller_af6e678d9713033f52d7fb793cc429b98}
+
+
+Target position coordinates. 
+
+
+
+Definition at line 15 of file robot\+\_\+controller.\+py.
+

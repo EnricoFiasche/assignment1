@@ -1,0 +1,60 @@
+The assignment requires controlling a holonomic robot in a 2d space with a simple 2d simulator, Stage. The simulator can be launched by executing the command\+:
+
+
+\begin{DoxyCode}
+1 rosrun stage\_ros stageros $(rospack find assignment1)/world/exercise.world
+\end{DoxyCode}
+
+
+If you want to run the solution, you have to run the following commands in two separate shells in the same order\+:
+
+
+\begin{DoxyCode}
+1 rosrun assignment1 target\_server.py
+\end{DoxyCode}
+
+
+and
+
+
+\begin{DoxyCode}
+1 rosrun assignment1 robot\_controller.py 
+\end{DoxyCode}
+
+
+\subsubsection*{The following behaviour should be achieved}
+
+
+\begin{DoxyItemize}
+\item 1. The robot asks for a random target, with both coordinates in the interval (-\/6.\+0, 6.\+0).
+\item 2. The robot reaches the target.
+\item 3. Go to step 1.
+\end{DoxyItemize}
+
+\subsubsection*{Programs and nodes}
+
+
+\begin{DoxyItemize}
+\item I have two different programs, {\bfseries \hyperlink{target__server_8py}{target\+\_\+server.\+py}} and {\bfseries \hyperlink{robot__controller_8py}{robot\+\_\+controller.\+py}}. I have chosen to do it in Python, because I already know the c++ code and I want to improve my skills knowledge in Python.
+\item The first one, {\bfseries \hyperlink{target__server_8py}{target\+\_\+server.\+py}}, is a server called {\bfseries target} that generates each time a random point (x,y) given the range (min,max), required by the file Target.\+srv.
+\item The second one, {\bfseries \hyperlink{robot__controller_8py}{robot\+\_\+controller.\+py}}, control the moviment of the robot in the space, trying to reach the target position. It has a subscriber, to know the actual position of the robot in the space through the topic odom. Inside the call\+Back function it checks if the robot has reached the target position and modifies its velocity. It has also a client, to generate a new target position when the robot reaches it.
+\end{DoxyItemize}
+
+\subsubsection*{Services and messages}
+
+
+\begin{DoxyItemize}
+\item In this project, I didn\textquotesingle{}t use any custom messages to send between processes.
+\item I have created a service called {\bfseries Target.\+srv}, that requires two float parameters, the range (the minimum and maximum value) to generate a random target. The response is the random float target coordinates (x,y). This service is used by the {\bfseries \hyperlink{target__server_8py}{target\+\_\+server.\+py}}.
+\end{DoxyItemize}
+
+\subsubsection*{Nodes and communication}
+
+I have three nodes that run toghether to reach the project goal.
+\begin{DoxyItemize}
+\item The first one is the {\bfseries stageros}. It is the 2D space simulator that sends the topic {\bfseries odom}, to know the robot actual position, and receives the topic {\bfseries cmd\+\_\+vel}, to modify the robot velocity, from another node, the {\bfseries \hyperlink{namespacerobot__controller}{robot\+\_\+controller}}.
+\item The second one is {\bfseries \hyperlink{namespacerobot__controller}{robot\+\_\+controller}}. This node controls the moviment of the robot. It receives the actual position from the {\bfseries stageros} node, to see if the target is reached, if it isn\textquotesingle{}t reached modifies the velocity based by the distance between the goal and robot position, with the topic {\bfseries cmd\+\_\+vel}.
+\item The thrid node is {\bfseries \hyperlink{namespacetarget__server}{target\+\_\+server}}. It is a service server, that provides a random target position to the {\bfseries \hyperlink{namespacerobot__controller}{robot\+\_\+controller}} node.
+\end{DoxyItemize}
+
+There is a graph inside folder {\bfseries graph}, which is figured what is explained above. 

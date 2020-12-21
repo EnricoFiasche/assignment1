@@ -1,0 +1,25 @@
+\hypertarget{robot__controller_8py}{}\section{scripts/robot\+\_\+controller.py File Reference}
+\label{robot__controller_8py}\index{scripts/robot\+\_\+controller.\+py@{scripts/robot\+\_\+controller.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacerobot__controller}{robot\+\_\+controller}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacerobot__controller_a869c3c711979050c7e3fe9b61908ae4d}{robot\+\_\+controller.\+position\+Call\+Back} (robot\+\_\+position)
+\item 
+def \hyperlink{namespacerobot__controller_ab3492a28557eb54f5f454111ff7d0495}{robot\+\_\+controller.\+is\+Reached} (x, y)
+\item 
+def \hyperlink{namespacerobot__controller_a511c31df6f9bf112ed99fb8e649db6ae}{robot\+\_\+controller.\+control} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacerobot__controller_a122e6e82d013c9e474d7b5c987efde3d}{robot\+\_\+controller.\+pub} = rospy.\+Publisher(\textquotesingle{}/cmd\+\_\+vel\textquotesingle{}, Twist, queue\+\_\+size=1000)
+\begin{DoxyCompactList}\small\item\em Global publisher to modify the velocity inside the call\+Back function. \end{DoxyCompactList}\item 
+\hyperlink{namespacerobot__controller_a7d2c9b24ddf4d6fc069f7bae05ba8935}{robot\+\_\+controller.\+random\+\_\+target\+\_\+client} = rospy.\+Service\+Proxy(\textquotesingle{}target\textquotesingle{},Target)
+\begin{DoxyCompactList}\small\item\em Client service that generate a random target (x,y) \end{DoxyCompactList}\item 
+\hyperlink{namespacerobot__controller_af6e678d9713033f52d7fb793cc429b98}{robot\+\_\+controller.\+target} = Odometry()
+\begin{DoxyCompactList}\small\item\em Target position coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
