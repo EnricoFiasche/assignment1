@@ -64,6 +64,7 @@ def isReached(x,y):
 	if(x >= target.pose.pose.position.x - 0.1 and x <= target.pose.pose.position.x + 0.1):
 		# if the y position is in the range +-0.1
 		if(y >= target.pose.pose.position.y - 0.1 and y <= target.pose.pose.position.y + 0.1):
+			rospy.loginfo("Target Reached!\n")
 			return True # the target is reached
 	
 	return False # the target is not reached
