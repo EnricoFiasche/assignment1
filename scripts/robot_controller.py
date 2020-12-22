@@ -35,6 +35,7 @@ def positionCallBack(robot_position):
 		response = random_target_client(-6.0,6.0)
 		target.pose.pose.position.x = response.target_x
 		target.pose.pose.position.y = response.target_y
+		rospy.loginfo("New target received: [%.2f,%.2f]",target.pose.pose.position.x,target.pose.pose.position.y)
 	
 	# setting the velocity of the robot based by the distance
 	# between the target and robot position
@@ -79,6 +80,7 @@ def control():
 	response = random_target_client(-6.0,6.0)
 	target.pose.pose.position.x = response.target_x
 	target.pose.pose.position.y = response.target_y
+	rospy.loginfo("New target received: [%.2f,%.2f]",target.pose.pose.position.x,target.pose.pose.position.y)
     
     # subscribers that callBack the robot position
 	rospy.Subscriber("/odom", Odometry, positionCallBack)
